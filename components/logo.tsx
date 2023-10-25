@@ -200,9 +200,9 @@ const Logo = () => {
         >
           {isHovered ? (
             <Image
-              src="/logo.png"
-              width="90"
-              height="90"
+              src="/logo-hover.png"
+              width="80"
+              height="80"
               alt="Logo ŁKS Przeplatanka"
               className="transition ease-in-out duration-300"
               priority={true}

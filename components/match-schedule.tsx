@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import { useState } from "react";
 import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
 
 const MatchSchedule = () => {
   const [text, setText] = useState("");
@@ -104,66 +105,80 @@ const MatchSchedule = () => {
     <div className="pt-5">
       <Tabs defaultValue="fixture" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="fixture">Najbliższy mecz ŁKS</TabsTrigger>
+          <TabsTrigger value="fixture">Następny mecz ŁKS</TabsTrigger>
           <TabsTrigger value="google">Szukaj w Google</TabsTrigger>
         </TabsList>
         <TabsContent value="fixture">
-          {fixture !== undefined && (
-            <div className="pt-4">
-              {!fixture.isActive && !fixture.isPassed && (
-                <div>
-                  <p className="text-white opacity-60 text-center text-sm">
-                    {fixture.date}
-                  </p>
-                  <p className="text-white opacity-60 text-center text-xl font-bold">
-                    {fixture.time}
-                  </p>
-                  <p className="text-white opacity-60 mt-1 text-center text-2xl font-bold">
-                    {fixture.name}
-                  </p>
-                  <p className="text-white opacity-60 mt-1 text-center text-base">
-                    {`(${fixture.matchType})`}
-                  </p>
-                </div>
-              )}
-              {fixture.isPassed && !fixture.isActive && (
-                <p className="text-white opacity-60 text-base text-center">
-                  {fixture.headingText}
-                </p>
-              )}
-              {!fixture.isPassed && fixture.isActive && (
-                <>
+          <div className="mt-4 min-h-[170px] border border-white/25 flex items-center justify-center rounded-md">
+            {fixture !== undefined && (
+              <div>
+                {!fixture.isActive && !fixture.isPassed && (
+                  <div>
+                    <p className="text-white opacity-60 text-center text-sm">
+                      {fixture.date}
+                    </p>
+                    <p className="text-white opacity-60 text-center text-xl font-bold">
+                      {fixture.time}
+                    </p>
+                    <p className="text-white opacity-60 mt-1 text-center text-2xl font-bold">
+                      {fixture.name}
+                    </p>
+                    <p className="text-white opacity-60 mt-1 text-center text-base">
+                      {`(${fixture.matchType})`}
+                    </p>
+                  </div>
+                )}
+                {fixture.isPassed && !fixture.isActive && (
                   <p className="text-white opacity-60 text-base text-center">
                     {fixture.headingText}
                   </p>
-                  <p className="text-white opacity-60 mt-2 text-center text-3xl font-bold">
-                    {fixture.name}
-                  </p>
-                  <p className="text-white opacity-60 mt-1 text-center text-base">
-                    {`(${fixture.matchType})`}
-                  </p>
-                </>
-              )}
-            </div>
-          )}
+                )}
+                {!fixture.isPassed && fixture.isActive && (
+                  <>
+                    <p className="text-white opacity-60 text-base text-center">
+                      {fixture.headingText}
+                    </p>
+                    <p className="text-white opacity-60 mt-2 text-center text-2xl font-bold">
+                      {fixture.name}
+                    </p>
+                    <p className="text-white opacity-60 mt-1 text-center text-base">
+                      {`(${fixture.matchType})`}
+                    </p>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </TabsContent>
         <TabsContent value="google">
-          <div className="mt-4">
-            <form onSubmit={(e) => openInNewTab(e, text)}>
-              <Input
-                placeholder="szukaj w Google ..."
-                value={text}
-                onChange={handleText}
-              />
-              <Button
-                variant="outline"
-                type="submit"
-                size="sm"
-                className="w-full mt-2"
+          <div className="mt-4 min-h-[170px] border px-3 border-white/25 flex items-center justify-center rounded-md">
+            <div className="w-full flex flex-col items-center">
+              <form
+                onSubmit={(e) => openInNewTab(e, text)}
+                className="flex flex-col items-center w-full px-1"
               >
-                Szukaj
-              </Button>
-            </form>
+                <Image
+                  src="/full-google.png"
+                  alt="Google"
+                  width={80}
+                  height={50}
+                />
+                <Input
+                  placeholder="szukaj w Google ..."
+                  value={text}
+                  onChange={handleText}
+                  className="mt-4 w-full"
+                />
+                <Button
+                  variant="outline"
+                  type="submit"
+                  size="sm"
+                  className="w-full mt-2"
+                >
+                  Szukaj
+                </Button>
+              </form>
+            </div>
           </div>
         </TabsContent>
       </Tabs>
