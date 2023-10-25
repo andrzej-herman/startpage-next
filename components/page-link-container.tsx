@@ -8,7 +8,7 @@ const pageLinks = [
   {
     name: "Google",
     image: "/google.png",
-    link: "https://www.youtube.com/",
+    link: "https://www.google.pl/",
   },
   {
     name: "Gmail",
