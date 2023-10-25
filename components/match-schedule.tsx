@@ -2,12 +2,21 @@
 
 import { api } from "@/convex/_generated/api";
 import { Doc } from "@/convex/_generated/dataModel";
-import { MatchFixture } from "@/helpers";
+import { MatchFixture, isEmptyOrSpaces } from "@/helpers";
 import { useQuery } from "convex/react";
 import { getMatchType, displayDate2, addMinutes } from "@/helpers";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "./ui/button";
+import { useState } from "react";
+import { Input } from "./ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const MatchSchedule = () => {
+  const [text, setText] = useState("");
+
+  const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
+
   const createFixture = (data: Doc<"matches">): MatchFixture | undefined => {
     const name =
       data.place === 1 ? `ŁKS - ${data.opponent}` : `${data.opponent} - ŁKS`;
@@ -72,52 +81,92 @@ const MatchSchedule = () => {
     fixture = createFixture(match);
   }
 
-  console.log(fixture?.isPassed);
+  const openInNewTab = (e: React.FormEvent<HTMLFormElement>, text: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isEmptyOrSpaces(text)) {
+      return;
+    }
+
+    let newStr = text;
+    var splitted = text.split(" ");
+    if (splitted.length > 1) {
+      newStr = text.replace(" ", "+");
+    }
+
+    const url = `https://www.google.pl/search?q=${newStr}`;
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
+  };
 
   return (
-    <div className="pt-8">
-      <p className="text-white opacity-60 text-center font-medium text-sm tracking-tight">
-        Najbliższy mecz Rycerzy Wiosny:
-      </p>
-      <Separator className="w-full mt-1 opacity-60" />
-      {fixture !== undefined && (
-        <div className="pt-4">
-          {!fixture.isActive && !fixture.isPassed && (
-            <div>
-              <p className="text-white opacity-60 text-center text-base">
-                {fixture.date}
-              </p>
-              <p className="text-white opacity-60 text-center text-2xl">
-                {fixture.time}
-              </p>
-              <p className="text-white opacity-60 mt-2 text-center text-3xl font-bold">
-                {fixture.name}
-              </p>
-              <p className="text-white opacity-60 mt-1 text-center text-base">
-                {`(${fixture.matchType})`}
-              </p>
+    <div className="pt-5">
+      <Tabs defaultValue="fixture" className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="fixture">Najbliższy mecz ŁKS</TabsTrigger>
+          <TabsTrigger value="google">Szukaj w Google</TabsTrigger>
+        </TabsList>
+        <TabsContent value="fixture">
+          {fixture !== undefined && (
+            <div className="pt-4">
+              {!fixture.isActive && !fixture.isPassed && (
+                <div>
+                  <p className="text-white opacity-60 text-center text-sm">
+                    {fixture.date}
+                  </p>
+                  <p className="text-white opacity-60 text-center text-xl font-bold">
+                    {fixture.time}
+                  </p>
+                  <p className="text-white opacity-60 mt-1 text-center text-2xl font-bold">
+                    {fixture.name}
+                  </p>
+                  <p className="text-white opacity-60 mt-1 text-center text-base">
+                    {`(${fixture.matchType})`}
+                  </p>
+                </div>
+              )}
+              {fixture.isPassed && !fixture.isActive && (
+                <p className="text-white opacity-60 text-base text-center">
+                  {fixture.headingText}
+                </p>
+              )}
+              {!fixture.isPassed && fixture.isActive && (
+                <>
+                  <p className="text-white opacity-60 text-base text-center">
+                    {fixture.headingText}
+                  </p>
+                  <p className="text-white opacity-60 mt-2 text-center text-3xl font-bold">
+                    {fixture.name}
+                  </p>
+                  <p className="text-white opacity-60 mt-1 text-center text-base">
+                    {`(${fixture.matchType})`}
+                  </p>
+                </>
+              )}
             </div>
           )}
-          {fixture.isPassed && !fixture.isActive && (
-            <p className="text-white opacity-60 text-base text-center">
-              {fixture.headingText}
-            </p>
-          )}
-          {!fixture.isPassed && fixture.isActive && (
-            <>
-              <p className="text-white opacity-60 text-base text-center">
-                {fixture.headingText}
-              </p>
-              <p className="text-white opacity-60 mt-2 text-center text-3xl font-bold">
-                {fixture.name}
-              </p>
-              <p className="text-white opacity-60 mt-1 text-center text-base">
-                {`(${fixture.matchType})`}
-              </p>
-            </>
-          )}
-        </div>
-      )}
+        </TabsContent>
+        <TabsContent value="google">
+          <div className="mt-4">
+            <form onSubmit={(e) => openInNewTab(e, text)}>
+              <Input
+                placeholder="szukaj w Google ..."
+                value={text}
+                onChange={handleText}
+              />
+              <Button
+                variant="outline"
+                type="submit"
+                size="sm"
+                className="w-full mt-2"
+              >
+                Szukaj
+              </Button>
+            </form>
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };

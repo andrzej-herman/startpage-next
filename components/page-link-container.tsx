@@ -46,6 +46,16 @@ const pageLinks = [
     link: "https://console.firebase.google.com/",
   },
   {
+    name: "Webio",
+    image: "/webio.png",
+    link: "https://www.webio.pl/",
+  },
+  {
+    name: "Clerk Auth",
+    image: "/clerk.png",
+    link: "https://dashboard.clerk.com/",
+  },
+  {
     name: "YouTube",
     image: "/youtube.png",
     link: "https://www.youtube.com/",
@@ -97,21 +107,21 @@ const PageLinkContainer = () => {
   const onMouseLeave = () => setIsHovered(false);
 
   const color = isHovered
-    ? "text-white opacity-60 pt-4 font-medium text-lg tracking-tight"
-    : "text-[#1F1F1F] pt-4 font-medium text-lg tracking-tight";
+    ? "text-white opacity-60 pt-3 font-medium text-base tracking-tight"
+    : "text-[#1F1F1F] pt-3 font-medium text-base tracking-tight";
 
   return (
     <>
-      <div className="pt-10 flex max-w-[300px] items-center justify-center flex-wrap">
+      <div className="pt-6 flex max-w-[300px] items-center justify-center flex-wrap">
         {pageLinks.map((p) => (
           <div
             key={p.name}
-            className="opacity-60 m-[3px] hover:opacity-100"
+            className="opacity-60 m-[2px] hover:opacity-100"
             onMouseEnter={() => onMouseEnter(p.name)}
             onMouseLeave={onMouseLeave}
           >
             <Link href={p.link} target="_blank">
-              <Image width="60" height="60" src={p.image} alt={p.name} />
+              <Image width="45" height="45" src={p.image} alt={p.name} />
             </Link>
           </div>
         ))}

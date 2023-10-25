@@ -9,8 +9,8 @@ const Clock = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center py-4">
-      <div className="text-white opacity-70 text-7xl font-semibold tracking-tight">
+    <div className="flex items-center justify-center py-2">
+      <div className="text-white opacity-60 text-5xl font-semibold tracking-tight">
         {dateState &&
           dateState.toLocaleString("pl-PL", {
             hour: "numeric",

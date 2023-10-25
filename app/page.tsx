@@ -2,8 +2,8 @@ import Clock from "@/components/clock";
 import DateDisplay from "@/components/date-display";
 import Logo from "@/components/logo";
 import MatchSchedule from "@/components/match-schedule";
+import { ModeToggle } from "@/components/mode-toggle";
 import PageLinkContainer from "@/components/page-link-container";
-
 
 export default function Home() {
   return (
@@ -14,6 +14,9 @@ export default function Home() {
         <Clock />
         <PageLinkContainer />
         <MatchSchedule />
+        <div className="pt-4">
+          <ModeToggle />
+        </div>
       </div>
     </main>
   );

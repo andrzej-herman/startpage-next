@@ -201,8 +201,8 @@ const Logo = () => {
           {isHovered ? (
             <Image
               src="/logo.png"
-              width="120"
-              height="120"
+              width="90"
+              height="90"
               alt="Logo ŁKS Przeplatanka"
               className="transition ease-in-out duration-300"
               priority={true}
@@ -210,8 +210,8 @@ const Logo = () => {
           ) : (
             <Image
               src="/logo.png"
-              width="100"
-              height="100"
+              width="80"
+              height="80"
               alt="Logo ŁKS Przeplatanka"
               className="transition ease-in-out duration-300"
               priority={true}
