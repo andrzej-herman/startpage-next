@@ -6,7 +6,6 @@ const DateDisplay = () => {
       <p className="text-white opacity-60 text-center text-sm tracking-tight">
         {displayDate(new Date())}
       </p>
-      ;
     </div>
   );
 };
