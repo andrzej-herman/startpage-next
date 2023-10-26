@@ -52,9 +52,6 @@ const MatchSchedule = () => {
       isPassed = true;
     }
 
-    console.log(new Date());
-    console.log(checkDate);
-
     if (new Date() >= matchDate && new Date() <= checkDate) {
       isActive = true;
       isPassed = false;

@@ -144,7 +144,7 @@ const PageLinkContainer = () => {
 
   const color = isHovered
     ? "dark:text-white opacity-80 dark:opacity-60 pt-3 font-medium text-base tracking-tight"
-    : "text-white dark:text-[#1F1F1F] pt-3 font-medium text-base tracking-tight";
+    : "pt-3 invisible";
 
   return (
     <>
