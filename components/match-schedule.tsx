@@ -114,22 +114,22 @@ const MatchSchedule = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="fixture">
-          <div className="mt-4 min-h-[170px] border border-white/25 flex items-center justify-center rounded-md">
+          <div className="mt-4 min-h-[170px] border dark:border-white/25 flex items-center justify-center rounded-md">
             {match === undefined && <LoadingSpinner />}
             {fixture !== undefined && (
               <div>
                 {!fixture.isActive && !fixture.isPassed && (
                   <div>
-                    <p className="text-white opacity-60 text-center text-sm">
+                    <p className="dark:text-white opacity-80 dark:opacity-60 font-medium dark:font-normal text-center text-sm tracking-tight">
                       {fixture.date}
                     </p>
-                    <p className="text-white opacity-60 text-center text-xl font-bold">
+                    <p className="dark:text-white opacity-80 dark:opacity-60 text-center text-xl font-bold tracking-tighter">
                       {fixture.time}
                     </p>
-                    <p className="text-white opacity-60 mt-1 text-center text-2xl font-bold">
+                    <p className="dark:text-white opacity-80 dark:opacity-60 mt-1 text-center text-2xl font-bold tracking-tighter">
                       {fixture.name}
                     </p>
-                    <p className="text-white opacity-60 mt-1 text-center text-base">
+                    <p className="dark:text-white opacity-80 dark:opacity-60 mt-1 text-center text-base tracking-tight">
                       {`(${fixture.matchType})`}
                     </p>
                   </div>
@@ -157,17 +157,25 @@ const MatchSchedule = () => {
           </div>
         </TabsContent>
         <TabsContent value="google">
-          <div className="mt-4 min-h-[170px] border px-3 border-white/25 flex items-center justify-center rounded-md">
+          <div className="mt-4 min-h-[170px] bg-neutral-50 dark:bg-[#1F1F1F] border px-3 dark:border-white/25 flex items-center justify-center rounded-md">
             <div className="w-full flex flex-col items-center">
               <form
                 onSubmit={(e) => openInNewTab(e, text)}
                 className="flex flex-col items-center w-full px-1"
               >
                 <Image
+                  src="/full-google-white.png"
+                  alt="Google"
+                  width={80}
+                  height={50}
+                  className="dark:hidden"
+                />
+                <Image
                   src="/full-google.png"
                   alt="Google"
                   width={80}
                   height={50}
+                  className="hidden dark:block"
                 />
                 <Input
                   placeholder="szukaj w Google ..."

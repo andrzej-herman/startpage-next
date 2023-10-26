@@ -30,10 +30,10 @@ export default function RootLayout({
         <ConvexClientProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
-            storageKey="notatkihermana-theme"
+            storageKey="starpage-herman-theme"
           >
             {children}
           </ThemeProvider>

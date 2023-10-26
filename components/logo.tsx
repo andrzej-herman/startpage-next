@@ -199,23 +199,43 @@ const Logo = () => {
           onMouseLeave={onMouseLeave}
         >
           {isHovered ? (
-            <Image
-              src="/logo-hover.png"
-              width="80"
-              height="80"
-              alt="Logo ŁKS Przeplatanka"
-              className="transition ease-in-out duration-300"
-              priority={true}
-            />
+            <>
+              <Image
+                src="/logo-white-hover.png"
+                width="80"
+                height="80"
+                alt="Logo ŁKS Przeplatanka"
+                className="dark:hidden transition ease-in-out duration-300"
+                priority={true}
+              />
+              <Image
+                src="/logo-hover.png"
+                width="80"
+                height="80"
+                alt="Logo ŁKS Przeplatanka"
+                className="hidden dark:block transition ease-in-out duration-300"
+                priority={true}
+              />
+            </>
           ) : (
-            <Image
-              src="/logo.png"
-              width="80"
-              height="80"
-              alt="Logo ŁKS Przeplatanka"
-              className="transition ease-in-out duration-300"
-              priority={true}
-            />
+            <>
+              <Image
+                src="/logo-white.png"
+                width="80"
+                height="80"
+                alt="Logo ŁKS Przeplatanka"
+                className="dark:hidden transition ease-in-out duration-300"
+                priority={true}
+              />
+              <Image
+                src="/logo.png"
+                width="80"
+                height="80"
+                alt="Logo ŁKS Przeplatanka"
+                className="hidden dark:block transition ease-in-out duration-300"
+                priority={true}
+              />
+            </>
           )}
         </div>
       </DialogTrigger>

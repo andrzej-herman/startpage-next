@@ -7,107 +7,128 @@ import { useState } from "react";
 const pageLinks = [
   {
     name: "Google",
-    image: "/google.png",
+    imageLight: "/google-white.png",
+    imageDark: "/google.png",
     link: "https://www.google.pl/",
   },
   {
     name: "Gmail",
-    image: "/gmail.png",
+    imageLight: "/gmail-white.png",
+    imageDark: "/gmail.png",
     link: "https://mail.google.com/",
   },
   {
     name: "Mapy Google",
-    image: "/maps.png",
+    imageLight: "/maps-white.png",
+    imageDark: "/maps.png",
     link: "https://www.google.pl/maps/",
   },
   {
     name: "Dysk Google",
-    image: "/drive.png",
+    imageLight: "/drive-white.png",
+    imageDark: "/drive.png",
     link: "https://drive.google.com/",
   },
   {
     name: "Github",
-    image: "/github.png",
+    imageLight: "/github-white.png",
+    imageDark: "/github.png",
     link: "https://github.com/andrzej-herman?tab=repositories",
   },
   {
     name: "Azure",
-    image: "/azure.png",
+    imageLight: "/azure-white.png",
+    imageDark: "/azure.png",
     link: "https://portal.azure.com/",
   },
   {
     name: "AWS",
-    image: "/aws.png",
+    imageLight: "/aws-white.png",
+    imageDark: "/aws.png",
     link: "https://eu-north-1.console.aws.amazon.com/console/home?region=eu-north-1#",
   },
   {
     name: "Firebase",
-    image: "/firebase.png",
+    imageLight: "/firebase-white.png",
+    imageDark: "/firebase.png",
     link: "https://console.firebase.google.com/",
   },
   {
     name: "Webio",
-    image: "/webio.png",
+    imageLight: "/webio-white.png",
+    imageDark: "/webio.png",
     link: "https://panel.webio.pl/",
   },
   {
     name: "Vercel",
-    image: "/vercel.png",
+    imageLight: "/vercel-white.png",
+    imageDark: "/vercel.png",
     link: "https://vercel.com/dashboard",
   },
   {
     name: "Clerk Auth",
-    image: "/clerk.png",
+    imageLight: "/clerk-white.png",
+    imageDark: "/clerk.png",
     link: "https://dashboard.clerk.com/",
   },
   {
     name: "YouTube",
-    image: "/youtube.png",
+    imageLight: "/youtube-white.png",
+    imageDark: "/youtube.png",
     link: "https://www.youtube.com/",
   },
   {
     name: "Netflix",
-    image: "/netflix.png",
+    imageLight: "/netflix-white.png",
+    imageDark: "/netflix.png",
     link: "https://www.netflix.com/browse",
   },
   {
     name: "Canal Plus Online",
-    image: "/canal.png",
+    imageLight: "/canal-white.png",
+    imageDark: "/canal.png",
     link: "https://www.canalplus.com/pl/",
   },
   {
     name: "Facebook",
-    image: "/facebook.png",
+    imageLight: "/facebook-white.png",
+    imageDark: "/facebook.png",
     link: "https://www.facebook.com/",
   },
   {
     name: "Onet",
-    image: "/onet.png",
+    imageLight: "/onet-white.png",
+    imageDark: "/onet.png",
     link: "https://www.onet.pl/",
   },
   {
     name: "Wirtualny Dziekanat",
-    image: "/san.png",
+    imageLight: "/san-white.png",
+    imageDark: "/san.png",
     link: "https://dziekanat.spoleczna.pl/",
   },
   {
     name: "Allegro",
-    image: "/allegro.png",
+    imageLight: "/allegro-white.png",
+    imageDark: "/allegro.png",
     link: "https://allegro.pl/",
   },
   {
     name: "OLX",
-    image: "/olx.png",
+    imageLight: "/olx-white.png",
+    imageDark: "/olx.png",
     link: "https://www.olx.pl/",
   },
   {
     name: "Orange",
-    image: "/orange.png",
+    imageLight: "/orange-white.png",
+    imageDark: "/orange.png",
     link: "https://www.orange.pl/twojekonto/zaloguj",
   },
   {
     name: "Plus",
-    image: "/plus.png",
+    imageLight: "/plus-white.png",
+    imageDark: "/plus.png",
     link: "https://ssl.plusgsm.pl/ebok-web/basic/loginStep1.action?brandId=Postpaid",
   },
 ];
@@ -122,8 +143,8 @@ const PageLinkContainer = () => {
   const onMouseLeave = () => setIsHovered(false);
 
   const color = isHovered
-    ? "text-white opacity-60 pt-3 font-medium text-base tracking-tight"
-    : "text-[#1F1F1F] pt-3 font-medium text-base tracking-tight";
+    ? "dark:text-white opacity-80 dark:opacity-60 pt-3 font-medium text-base tracking-tight"
+    : "text-white dark:text-[#1F1F1F] pt-3 font-medium text-base tracking-tight";
 
   return (
     <>
@@ -131,12 +152,15 @@ const PageLinkContainer = () => {
         {pageLinks.map((p) => (
           <div
             key={p.name}
-            className="opacity-60 m-[2px] hover:opacity-100"
+            className="opacity-70 dark:opacity-60 hover:opacity-100 dark:hover:opacity-100 m-[2px]"
             onMouseEnter={() => onMouseEnter(p.name)}
             onMouseLeave={onMouseLeave}
           >
-            <Link href={p.link} target="_blank">
-              <Image width="45" height="45" src={p.image} alt={p.name} />
+            <Link href={p.link} target="_blank" className="dark:hidden">
+              <Image width="45" height="45" src={p.imageLight} alt={p.name} />
+            </Link>
+            <Link href={p.link} target="_blank" className="hidden dark:block">
+              <Image width="45" height="45" src={p.imageDark} alt={p.name} />
             </Link>
           </div>
         ))}
