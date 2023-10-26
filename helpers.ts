@@ -9,7 +9,7 @@ export function displayDate2(date: Date): string {
 }
 
 export function getWeekDay(date: Date): string {
-  var days = [
+  const days = [
     "niedziela",
     "poniedziałek",
     "wtorek",

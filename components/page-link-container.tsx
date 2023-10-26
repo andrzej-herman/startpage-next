@@ -48,7 +48,12 @@ const pageLinks = [
   {
     name: "Webio",
     image: "/webio.png",
-    link: "https://www.webio.pl/",
+    link: "https://panel.webio.pl/",
+  },
+  {
+    name: "Vercel",
+    image: "/vercel.png",
+    link: "https://vercel.com/dashboard",
   },
   {
     name: "Clerk Auth",
@@ -86,6 +91,16 @@ const pageLinks = [
     link: "https://dziekanat.spoleczna.pl/",
   },
   {
+    name: "Allegro",
+    image: "/allegro.png",
+    link: "https://allegro.pl/",
+  },
+  {
+    name: "OLX",
+    image: "/olx.png",
+    link: "https://www.olx.pl/",
+  },
+  {
     name: "Orange",
     image: "/orange.png",
     link: "https://www.orange.pl/twojekonto/zaloguj",
@@ -112,7 +127,7 @@ const PageLinkContainer = () => {
 
   return (
     <>
-      <div className="pt-6 flex max-w-[300px] items-center justify-center flex-wrap">
+      <div className="pt-6 flex max-w-[350px] items-center justify-center flex-wrap">
         {pageLinks.map((p) => (
           <div
             key={p.name}

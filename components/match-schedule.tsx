@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
+import LoadingSpinner from "./loading-spinner";
 
 const MatchSchedule = () => {
   const [text, setText] = useState("");
@@ -105,11 +106,16 @@ const MatchSchedule = () => {
     <div className="pt-5">
       <Tabs defaultValue="fixture" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="fixture">Następny mecz ŁKS</TabsTrigger>
-          <TabsTrigger value="google">Szukaj w Google</TabsTrigger>
+          <TabsTrigger className="text-xs px-4" value="fixture">
+            Następny mecz ŁKS
+          </TabsTrigger>
+          <TabsTrigger className="text-xs px-4" value="google">
+            Szukaj w Google
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="fixture">
           <div className="mt-4 min-h-[170px] border border-white/25 flex items-center justify-center rounded-md">
+            {match === undefined && <LoadingSpinner />}
             {fixture !== undefined && (
               <div>
                 {!fixture.isActive && !fixture.isPassed && (
