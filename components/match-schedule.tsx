@@ -36,7 +36,7 @@ const MatchSchedule = () => {
       data.month,
       data.day,
       data.hour,
-      data.minute
+      data.minute,
     );
 
     let isActive = false;
@@ -91,7 +91,7 @@ const MatchSchedule = () => {
     }
 
     let newStr = text;
-    var splitted = text.split(" ");
+    const splitted = text.split(" ");
     if (splitted.length > 1) {
       newStr = text.replace(" ", "+");
     }
@@ -102,7 +102,7 @@ const MatchSchedule = () => {
   };
 
   return (
-    <div className="pt-5">
+    <div className="pt-5 min-w-[400px]">
       <Tabs defaultValue="fixture" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger className="text-xs px-4" value="fixture">
@@ -113,7 +113,7 @@ const MatchSchedule = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="fixture">
-          <div className="mt-4 min-h-[170px] border dark:border-white/25 flex items-center justify-center rounded-md">
+          <div className="mt-4 min-h-[170px] border dark:border-white/25  border-neutral-900/20 flex items-center justify-center rounded-md">
             {match === undefined && <LoadingSpinner />}
             {fixture !== undefined && (
               <div>
@@ -134,19 +134,19 @@ const MatchSchedule = () => {
                   </div>
                 )}
                 {fixture.isPassed && !fixture.isActive && (
-                  <p className="text-white opacity-60 text-base text-center">
+                  <p className="dark:text-white opacity-80 dark:opacity-60 text-base text-center">
                     {fixture.headingText}
                   </p>
                 )}
                 {!fixture.isPassed && fixture.isActive && (
                   <>
-                    <p className="text-white opacity-60 text-base text-center">
+                    <p className="dark:text-white opacity-80 dark:opacity-60 text-base text-center">
                       {fixture.headingText}
                     </p>
-                    <p className="text-white opacity-60 mt-2 text-center text-2xl font-bold">
+                    <p className="dark:text-white opacity-80 dark:opacity-60 mt-2 text-center text-2xl font-bold">
                       {fixture.name}
                     </p>
-                    <p className="text-white opacity-60 mt-1 text-center text-base">
+                    <p className="dark:text-white opacity-80 dark:opacity-60 mt-1 text-center text-base">
                       {`(${fixture.matchType})`}
                     </p>
                   </>
@@ -156,7 +156,7 @@ const MatchSchedule = () => {
           </div>
         </TabsContent>
         <TabsContent value="google">
-          <div className="mt-4 min-h-[170px] bg-neutral-50 dark:bg-[#1F1F1F] border px-3 dark:border-white/25 flex items-center justify-center rounded-md">
+          <div className="mt-4 min-h-[170px] border px-3 border-neutral-900/20 dark:border-white/25 flex items-center justify-center rounded-md">
             <div className="w-full flex flex-col items-center">
               <form
                 onSubmit={(e) => openInNewTab(e, text)}
